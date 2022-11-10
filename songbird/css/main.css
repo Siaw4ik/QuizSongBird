@@ -1,0 +1,281 @@
+.body {
+  max-width: 1920px;
+  background-color: rgb(39, 20, 20);
+  margin: 0;
+  }
+
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding-top: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.wrap_logo_a{
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo_img {
+  display: block;
+}
+
+.logo_p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 52px;
+  margin: 0;
+  color: #fff;
+}
+
+.logo_p span {
+  color: rgb(19, 175, 123);
+}
+
+.wrap_logo_a:hover .logo_p{
+  color: rgb(19, 175, 123);
+}
+
+.wrap_logo_a:hover .logo_p span {
+  color: #fff;
+}
+
+.score p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+  color: #fff;
+  margin: 0;
+}
+
+.score span {
+  color: rgb(19, 175, 123);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 30px 0 30px;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.bird-family {
+  width: 100%;
+  border-radius: 5px;
+  border: outset 0px;
+  background-color: rgb(19, 175, 123);
+}
+
+.bird-family ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bird-family_item {
+  list-style-type: none;
+  color: #fff;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.block_question {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.block_question_photo img {
+  width: 200px;
+  height: 155px;
+  display: block;
+  border-radius: 5px;
+}
+
+.block_question_audio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.block_question_audio.audio::before {
+  content: '';
+  width: 150px;
+  height: 0.5px;
+  background-color: rgb(93, 93, 93);
+}
+
+.two {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+}
+
+.two_block {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 50%;
+
+}
+
+.block_radio_ul {
+  padding: 0;
+  margin: 0;
+}
+
+.block_radio_ul li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.block_radio_ul li:not(:last-child) {
+  border-bottom: solid 1px rgb(93, 93, 93);
+}
+
+.block_radio_ul input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  transition: 0.3s all linear;
+  outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgb(93, 93, 93);
+  cursor: pointer;
+}
+
+.block_radio_ul input:checked{
+  background-color: rgb(19, 175, 123);
+}
+
+.block_about-item {
+  padding: 15px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.block_next {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.block_next p {
+  color: #fff;
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+}
+
+@media (max-width: 1000px) {
+  .bird-family_item {
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 90%;
+  }
+
+  .logo_p {
+    font-size: 40px;
+  }
+
+  .logo_img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 650px) {
+  .header {
+    padding: 10px 0 10px;
+  }
+
+  .logo_p {
+    font-size: 34px;
+  }
+  .logo_img {
+    width: 34px;
+    height: 34px;
+  }
+  .score p {
+    font-size: 24px;
+  }
+
+  .two {
+    flex-direction: column;
+  }
+
+  .two_block {
+    width: 100%;
+
+  }
+}
+
+@media (max-width: 600px) {
+  .block_question {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .block_question_audio {
+    height: 150px;
+  }
+}

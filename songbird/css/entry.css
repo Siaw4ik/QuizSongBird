@@ -2,7 +2,7 @@
   max-width: 1920px;
   background-color: rgb(39, 20, 20);
   margin: 0;
-}
+} 
 
 body.lock {
   overflow: hidden;
