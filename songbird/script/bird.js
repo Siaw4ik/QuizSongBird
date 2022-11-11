@@ -1,4 +1,4 @@
-const birdsData = [
+export const birdsData = [
 	[       
 	  {
 		id: 1,

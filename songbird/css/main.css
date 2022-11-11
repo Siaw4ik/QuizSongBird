@@ -150,12 +150,12 @@
   width: 100%;
 }
 
-.two_block {
+.two_block-radio {
   background-color: rgb(52, 51, 51);
   border: solid 1px rgb(93, 93, 93);
   border-radius: 5px;
   width: 50%;
-
+  height: 290.6px;
 }
 
 .block_radio_ul {
@@ -179,6 +179,11 @@
   border-bottom: solid 1px rgb(93, 93, 93);
 }
 
+.block_radio_ul li:hover {
+  background-color: rgb(110, 110, 110);
+  cursor: pointer;
+}
+
 .block_radio_ul input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -198,10 +203,42 @@
   background-color: rgb(19, 175, 123);
 }
 
-.block_about-item {
+.two_block_about-item {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 50%;
   padding: 15px;
   color: #fff;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.block_about-item_photo-audio {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.photo-audio_image img {
+  width: 200px;
+  height: 155px;
+  margin: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.photo-audio_audio_name-bird {
+  font-size: 23px;
+}
+
+.photo-audio_audio_name-bird,
+.photo-audio_audio_name-birdFamily {
+  border-bottom: 0.5px solid rgb(93, 93, 93);
+  margin: 0;
+  padding: 10px 0;
 }
 
 .block_next {
@@ -221,10 +258,26 @@
   font-family: 'Dancing Script', cursive;
 }
 
+@media (max-width: 1300px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .block_about-item_photo-audio {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 1000px) {
   .bird-family_item {
     padding: 10px 10px;
   }
+  .photo-audio_audio_name-bird {
+    font-size: 21px;
+  }
+  
 }
 
 @media (max-width: 800px) {
@@ -262,9 +315,13 @@
     flex-direction: column;
   }
 
-  .two_block {
+  .two_block-radio,
+  .two_block_about-item {
     width: 100%;
 
+  }
+  .block_about-item_photo-audio {
+    flex-direction: row;
   }
 }
 
@@ -277,5 +334,11 @@
   
   .block_question_audio {
     height: 150px;
+  }
+}
+
+@media (max-width: 585px) {
+  .block_about-item_photo-audio {
+    flex-direction: column;
   }
 }
