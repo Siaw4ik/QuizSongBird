@@ -84,7 +84,10 @@ function clickNext(){
     colorBirdFamilyItem(countArr);
     countScore = 5;
     isRight = true;
-    buttonNext.removeEventListener('click', clickNext)
+    buttonNext.removeEventListener('click', clickNext);
+
+    buttonNext.style.backgroundColor = 'rgb(52, 51, 51)';
+    buttonNext.style.cursor = 'default';
   }
 }
 
@@ -127,14 +130,13 @@ birdLi.forEach((bird, index) => {
       document.querySelector('.block_question_audio_p').innerHTML = shufleArr[index].name;
 
       isRight = false
-      
-      buttonNext.addEventListener('click', clickNext);
+      buttonNext.style.backgroundColor = 'rgb(19, 175, 123)';
+      buttonNext.style.cursor = 'pointer';
 
-      /* clickNext(); */
+      buttonNext.addEventListener('click', clickNext);
     } else {
       if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
         countScore -= 1;
-        console.log(countScore)
       }
       if(isRight){
         falseSound();
