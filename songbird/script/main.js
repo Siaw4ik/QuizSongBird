@@ -115,6 +115,7 @@ birdLi.forEach((bird, index) => {
     const answer = document.querySelector('.answer').id;
 
     if (answer === shufleArr[index].name) {
+      trueSound();
       bird.querySelector('span').style.backgroundColor = 'rgb(19, 175, 123)';
       if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
         score += countScore;
@@ -136,12 +137,26 @@ birdLi.forEach((bird, index) => {
         console.log(countScore)
       }
       if(isRight){
+        falseSound();
         bird.querySelector('span').style.backgroundColor = 'red';
       }
     }
 
   })
 })
+
+function trueSound() {
+  var audio = new Audio();
+  audio.src = '../assets/audio/zvuk-otvet-zaschitan-galochka-5193-1-1__=3 (mp3cut.net).mp3';
+  audio.autoplay = true;
+}
+
+function falseSound() {
+  var audio = new Audio();
+  audio.src = '../assets/audio/standartnyiy-zvuk-s-oshibochnyim-otvetom-5199-1__=8 (mp3cut.net).mp3';
+  audio.autoplay = true;
+}
+
 
 
 
