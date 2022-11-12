@@ -2,7 +2,9 @@ import {birdsData} from '../script/bird.js'
 
 const birdLi = document.querySelectorAll('.block_radio_ul li');
 const buttonNext = document.querySelector('.block_next');
-const blockAboutBird = document.querySelector('.two_block_about-item')
+const blockAboutBird = document.querySelector('.two_block_about-item');
+const blockQuestion = document.querySelector('.block_question');
+const birdFamilyItem = document.querySelectorAll('.bird-family_item');
 
 let countArr = 0;
 let shufleArr;
@@ -11,29 +13,65 @@ let shufleArr;
 function changeListBird(count){
   shufleArr = birdsData[count].sort(() => Math.random() - 0.5);
   for(let i = 0; i < shufleArr.length; i++){
-      birdLi[i].innerHTML = `<input type="radio" name="bird" id="${shufleArr[i].id}">${shufleArr[i].name}`
+      birdLi[i].innerHTML = `<span class='li_button'></span>${shufleArr[i].name}`
   }
   console.log(shufleArr)
 }
 
 changeListBird(countArr)
 
+function createBlockQuestion(){
+  const randomNumber = Math.floor(Math.random() * (5 -  0 + 1)) + 0;
+  
+  let div_questionPhoto = document.createElement('div');
+  div_questionPhoto.classList = 'block_question_photo';
+  div_questionPhoto.innerHTML = `<img src="../assets/image/bird_none.jpg" alt="bird none">`
+  blockQuestion.appendChild(div_questionPhoto);
 
-buttonNext.addEventListener('click', function() {
-  if ( countArr < 5){
-    countArr++;
-    console.log(countArr)
-    changeListBird(countArr);
-    blockAboutBird.innerHTML = '';
-    blockAboutBird.innerHTML = `Послушайте плеер.<br>
-    Выберите птицу из списка`;
-  }
-})
+  let div_qustionNameAudio = document.createElement('div');
+  div_qustionNameAudio.classList = 'block_question_audio';
+  div_qustionNameAudio.innerHTML = `
+    <p class="block_question_audio_p">**********</p>
+    <div class="block_question_audio audio"><audio id="${shufleArr[randomNumber].name}" class="answer" src="${shufleArr[randomNumber].audio}" controls></audio></div>`
+  blockQuestion.appendChild(div_qustionNameAudio);
+}
+
+createBlockQuestion();
+
+
+function colorBirdFamilyItem(count) {
+  birdFamilyItem.forEach((family) => {
+    family.style.backgroundColor = 'transparent'
+  })
+  birdFamilyItem[count].style.backgroundColor = 'rgb(16, 139, 98)';
+}
+
+colorBirdFamilyItem(countArr);
+
+
+let isRight = true;
+let countScore = 5;
+let score = 0;
+
+function clickNext(){
+  buttonNext.addEventListener('click', function() {
+    if ( countArr < 5){
+      countArr++;
+      console.log(countArr)
+      changeListBird(countArr);
+      blockAboutBird.innerHTML = '';
+      blockAboutBird.innerHTML = `Послушайте плеер.<br>
+      Выберите птицу из списка`;
+      blockQuestion.innerHTML = ''
+      createBlockQuestion();
+      colorBirdFamilyItem(countArr);
+      countScore = 5;
+    }
+  })
+}
 
 birdLi.forEach((bird, index) => {
-  bird.addEventListener('click', () => {
-    const birdInput = bird.querySelector('input')
-    console.log(birdInput.id)
+  bird.addEventListener('click', function clickLi() {
     blockAboutBird.innerHTML = '';
 
     let div_photoAndaudio = document.createElement('div')
@@ -55,7 +93,32 @@ birdLi.forEach((bird, index) => {
     div_text.classList = 'block_about-item_text';
     div_text.innerHTML = `${shufleArr[index].description}`;
     blockAboutBird.appendChild(div_text)
+
+    const answer = document.querySelector('.answer').id;
+
+    if (answer === shufleArr[index].name) {
+      bird.querySelector('span').style.backgroundColor = 'rgb(19, 175, 123)';
+      score += countScore;
+      document.querySelector('.score span').innerHTML = score;
+      
+      document.querySelector('.block_question_photo img').src = shufleArr[index].image;
+      document.querySelector('.block_question_audio_p').innerHTML = shufleArr[index].name;
+
+      isRight = false
+      
+      clickNext();
+    } else {
+      if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
+        countScore -= 1;
+        console.log(countScore)
+      }
+      if(isRight){
+        bird.querySelector('span').style.backgroundColor = 'red';
+      }
+    }
+
   })
 })
+
 
 

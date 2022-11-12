@@ -96,16 +96,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .bird-family_item {
   list-style-type: none;
   color: #fff;
-  padding: 10px 15px;
+  padding: 10px 14px;
   display: flex;
   justify-content: center;
+  flex: auto;
 }
 
 .block_question {
@@ -113,7 +114,7 @@
   border: solid 1px rgb(93, 93, 93);
   border-radius: 5px;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -132,15 +133,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 15px;
   color: #fff;
+  width: 100%;
 }
 
-.block_question_audio.audio::before {
-  content: '';
-  width: 150px;
-  height: 0.5px;
-  background-color: rgb(93, 93, 93);
+.block_question_audio_p {
+  border-bottom: 0.5px solid rgb(93, 93, 93);
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 23px;
+  width: 100%;
 }
+
+.block_question_audio.audio {
+  margin-top: 10px;
+}
+
 
 .two {
   display: flex;
@@ -168,7 +177,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   padding: 13px;
   color: #fff;
   font-size: 16px;
@@ -184,19 +193,12 @@
   cursor: pointer;
 }
 
-.block_radio_ul input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.li_button {
   border-radius: 50%;
   width: 10px;
   height: 10px;
   transition: 0.3s all linear;
-  outline: none;
-  box-sizing: border-box;
-  margin: 0;
   background-color: rgb(93, 93, 93);
-  cursor: pointer;
 }
 
 .block_radio_ul input:checked{
@@ -226,6 +228,7 @@
   width: 200px;
   height: 155px;
   margin: auto;
+  object-fit: cover;
   border-radius: 10px;
   display: block;
 }
@@ -271,9 +274,6 @@
 }
 
 @media (max-width: 1000px) {
-  .bird-family_item {
-    padding: 10px 10px;
-  }
   .photo-audio_audio_name-bird {
     font-size: 21px;
   }
