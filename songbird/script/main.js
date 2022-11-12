@@ -53,7 +53,7 @@ let isRight = true;
 let countScore = 5;
 let score = 0;
 
-function clickNext(){
+/* function clickNext(){
   buttonNext.addEventListener('click', function() {
     if ( countArr < 5){
       countArr++;
@@ -66,8 +66,26 @@ function clickNext(){
       createBlockQuestion();
       colorBirdFamilyItem(countArr);
       countScore = 5;
+      isRight = true
     }
   })
+} */
+
+function clickNext(){
+  if ( countArr < 5){
+    countArr++;
+    console.log(countArr)
+    changeListBird(countArr);
+    blockAboutBird.innerHTML = '';
+    blockAboutBird.innerHTML = `Послушайте плеер.<br>
+    Выберите птицу из списка`;
+    blockQuestion.innerHTML = ''
+    createBlockQuestion();
+    colorBirdFamilyItem(countArr);
+    countScore = 5;
+    isRight = true;
+    buttonNext.removeEventListener('click', clickNext)
+  }
 }
 
 birdLi.forEach((bird, index) => {
@@ -98,7 +116,10 @@ birdLi.forEach((bird, index) => {
 
     if (answer === shufleArr[index].name) {
       bird.querySelector('span').style.backgroundColor = 'rgb(19, 175, 123)';
-      score += countScore;
+      if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
+        score += countScore;
+      }
+      
       document.querySelector('.score span').innerHTML = score;
       
       document.querySelector('.block_question_photo img').src = shufleArr[index].image;
@@ -106,7 +127,9 @@ birdLi.forEach((bird, index) => {
 
       isRight = false
       
-      clickNext();
+      buttonNext.addEventListener('click', clickNext);
+
+      /* clickNext(); */
     } else {
       if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
         countScore -= 1;
@@ -119,6 +142,7 @@ birdLi.forEach((bird, index) => {
 
   })
 })
+
 
 
 
