@@ -160,11 +160,7 @@
 }
 
 .two_block-radio {
-  background-color: rgb(52, 51, 51);
-  border: solid 1px rgb(93, 93, 93);
-  border-radius: 5px;
   width: 50%;
-  height: 290.6px;
 }
 
 .block_radio_ul {
@@ -178,14 +174,27 @@
   flex-direction: row;
   align-items: center;
   gap: 15px;
+  box-sizing: border-box;
+  height: 47.6px;
   padding: 13px;
   color: #fff;
   font-size: 16px;
   font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: rgb(52, 51, 51);
+  border-left: solid 1px rgb(93, 93, 93);
+  border-right: solid 1px rgb(93, 93, 93);
 }
 
-.block_radio_ul li:not(:last-child) {
+.block_radio_ul li {
   border-bottom: solid 1px rgb(93, 93, 93);
+}
+.block_radio_ul li:first-child{
+  border-top: solid 1px rgb(93, 93, 93);
+  border-radius: 5px 5px 0 0;
+}
+
+.block_radio_ul li:last-child{
+  border-radius: 0 0 5px 5px;
 }
 
 .block_radio_ul li:hover {
@@ -447,6 +456,7 @@
   align-items: center;
   gap: 30px;
   margin-top: 10px;
+  height: 75.5px;
 }
 
 .play-button_bird {
@@ -504,6 +514,7 @@
 
 .time_bird {
   align-self: flex-end;
+  height: 21px;
 }
 
 .timebar_bird {
@@ -544,7 +555,8 @@
 }
 
 .timebar-volume_bird {
-  height: 25px;
+  height: 28px;
+  width: 30px;
   display: flex;
   flex-direction: row;
   gap: 10px;

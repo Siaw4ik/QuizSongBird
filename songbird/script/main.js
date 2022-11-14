@@ -89,10 +89,11 @@ function createBlockQuestion(){
     document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
     document.querySelector('.timebar-circle').style.left = `${current}%`;
     document.querySelector('.timebar-time_currentTime').innerHTML = getTimeFromNum(audioAnswer.currentTime);
-  },200)
+  }, 200)
 }
 
 createBlockQuestion();
+
 
 function play_pauseAudio(audio, elem, form) {
   elem.addEventListener('click', () => {
@@ -264,14 +265,14 @@ birdLi.forEach((bird, index) => {
     const buttonPlay_bird = document.querySelector('.play-button_bird');
     const formBird = document.querySelector('.form_bird');
     const timeBarLineBird = document.querySelector('.timebar-line_bird');
-
-    /* const audioBird = new Audio(); */
+    console.log(audioBird.volume)
     audioBird.src = shufleArr[index].audio;
     audioBird.classList = 'audio-bird';
     if(audioBird.muted){
       console.log('muted')
       audioBird.muted = !audioBird.muted
     }
+    document.querySelector('.volume-slider_bird').style.background = `linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audioBird.volume * 100}%, rgb(115, 115, 115) ${audioBird.volume * 100}%, grey 100%)`
     document.querySelector('.photo-audio_audio_play').prepend(audioBird);
 
     play_pauseAudio(audioBird, buttonPlay_bird, formBird);
@@ -283,9 +284,9 @@ birdLi.forEach((bird, index) => {
     clickVolumeBird(audioBird);
     volumeSliderHoverBird(audioBird);
     clickTimeBarLine(audioBird, timeBarLineBird);
-    let intervalID = setInterval(() => {
+    setInterval(() => {
       changeLineBird(audioBird, timeBarLineBird)
-    }, 1000)
+    }, 200)
 
 
 
@@ -389,11 +390,13 @@ function clickVolumeBird(audio) {
 function volumeSliderHoverBird(audio) {
   const volumeSlider = document.querySelector('.volume-slider_bird');
   document.querySelector('.timebar-volume_bird').addEventListener('mouseenter', () =>{
+    document.querySelector('.timebar-volume_bird').style.width = `140px`
     volumeSlider.classList.add('active');
   })
 
   document.querySelector('.timebar-volume_bird').addEventListener('mouseleave', () =>{
     volumeSlider.classList.remove('active');
+    document.querySelector('.timebar-volume_bird').style.width = `30px`
   })
 
   volumeSlider.addEventListener('click', e => {
