@@ -133,7 +133,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 15px;
+  gap: 5px;
   color: #fff;
   width: 100%;
 }
@@ -259,7 +259,336 @@
   color: #fff;
   margin: 0;
   font-family: 'Dancing Script', cursive;
+  font-size: 20px;
 }
+
+.finish {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+  background-color: rgb(19, 175, 123);
+  border-radius: 5px;
+}
+
+.finish_button_a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+}
+
+/* ------------------audioplayer---------------- */
+.block_question_audio_audioplayer {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.play-button {
+  border: 3px solid rgb(19, 175, 123);
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.form.play {
+  border-radius: 5px;
+  border: 10px solid transparent; 
+  border-left: 15px solid rgb(19, 175, 123);
+  transition: .3s;
+  margin-left: 13.5px;
+}
+.play-button:hover .form {
+  scale:1.1;
+}
+
+.form.pause  {
+  height: 15px;
+  width: 9px;
+  position: relative;
+  transition: .3s;
+}
+.form.pause::before  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause::after  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause:hover {
+  scale:1.1;
+}
+
+.timebar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.timebar-bar {
+  position: relative;
+}
+
+.timebar-line {
+  height: 7px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.timebar-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%,calc(-50% + 3px));
+  z-index: 5;
+}
+
+.timebar-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  gap: 30px;
+}
+
+.timebar-time {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  height: 30px;
+  width: 100px;
+}
+
+.timebar-volume {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.volume {
+  cursor: pointer;
+}
+
+.volume svg {
+  width: 30px;
+}
+
+.volume.on.active {
+  display: block;
+}
+.volume.on {
+  display: none;
+}
+
+.volume-slider.active {
+  display: block;
+  width: 100px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 100%, rgb(115, 115, 115) 100%, grey 100%);
+  cursor: pointer;
+  transition: 0.6s all;
+}
+
+.volume-slider {
+  display: none;
+  transition: 0.6s all;
+}
+
+.volume.out {
+  display: none;
+}
+.volume.out.active {
+  display: block;
+}
+
+/*                ////////////from bird/////////////              */
+
+.photo-audio_audio {
+  width: 100%;
+}
+.controls_bird {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.play-button_bird {
+  border: 3px solid rgb(19, 175, 123);
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.form_bird.play {
+  border-radius: 5px;
+  border: 10px solid transparent; 
+  border-left: 15px solid rgb(19, 175, 123);
+  transition: .3s;
+  margin-left: 13.5px;
+}
+.play-button_bird:hover .form_bird {
+  scale:1.1;
+}
+
+.form_bird.pause  {
+  height: 15px;
+  width: 9px;
+  position: relative;
+  transition: .3s;
+}
+.form_bird.pause::before  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form_bird.pause::after  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form_bird.pause:hover {
+  scale:1.1;
+}
+
+.time_bird {
+  align-self: flex-end;
+}
+
+.timebar_bird {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timebar-bar_bird {
+  position: relative;
+}
+
+.timebar-line_bird {
+  height: 7px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.timebar-circle_bird {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%,calc(-50% + 3px));
+  z-index: 5;
+}
+
+.timebar-time_bird {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+}
+
+.timebar-volume_bird {
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.volume_bird {
+  cursor: pointer;
+}
+
+.volume_bird svg {
+  width: 30px;
+}
+
+.volume_bird.on.active {
+  display: block;
+}
+.volume_bird.on {
+  display: none;
+}
+
+.volume-slider_bird.active {
+  display: block;
+  width: 100px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 100%, rgb(115, 115, 115) 100%, grey 100%);
+  cursor: pointer;
+  transition: 0.6s all;
+}
+
+.volume-slider_bird {
+  display: none;
+  transition: 0.6s all;
+}
+
+.volume_bird.out {
+  display: none;
+}
+.volume_bird.out.active {
+  display: block;
+}
+
+/* ------------------audioplayer---------------- */
 
 @media (max-width: 1300px) {
   .container {
@@ -295,7 +624,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .header {
     padding: 10px 0 10px;
   }
@@ -323,9 +652,6 @@
   .block_about-item_photo-audio {
     flex-direction: row;
   }
-}
-
-@media (max-width: 600px) {
   .block_question {
     flex-direction: column;
     align-items: center;
@@ -340,5 +666,8 @@
 @media (max-width: 585px) {
   .block_about-item_photo-audio {
     flex-direction: column;
+  }
+  .timebar-time_bird {
+    font-size: 14px;
   }
 }
