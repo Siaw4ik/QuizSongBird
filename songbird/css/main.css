@@ -126,6 +126,7 @@
   height: 155px;
   display: block;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .block_question_audio {
@@ -273,12 +274,6 @@
 
 .finish {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0px;
-  background-color: rgb(19, 175, 123);
-  border-radius: 5px;
 }
 
 .finish_button_a {
@@ -286,6 +281,13 @@
   color: #fff;
   font-family: 'Dancing Script', cursive;
   font-size: 20px;
+}
+.finish_button_a div{
+  padding: 10px 0px;
+  background-color: rgb(19, 175, 123);
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
 }
 
 /* ------------------audioplayer---------------- */

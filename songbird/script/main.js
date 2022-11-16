@@ -1,4 +1,23 @@
+let lang = JSON.parse(localStorage.getItem('lang'));
+
+let arrFamilyBird = ['Warm up', 'Passerines', 'Forest birds', 'Songbirds', 'Predator birds', 'Sea birds'];
+
+if(lang === 'en'){
+  document.querySelector('.score p').innerHTML = 'Score: <span>0</span>'
+
+  document.querySelectorAll('.bird-family_item').forEach((item, index) => {
+      item.innerHTML = `${arrFamilyBird[index]}`
+  })
+
+  document.querySelector('.two_block_about-item').innerHTML = `Listen to the player.<br>
+  Select a bird from the list`;
+  document.querySelector('.block_next p').innerHTML = 'Next Level';
+}
+
+
+
 import {birdsData} from '../script/bird.js'
+
 
 const birdLi = document.querySelectorAll('.block_radio_ul li');
 const buttonNext = document.querySelector('.block_next');
@@ -14,7 +33,7 @@ let isRight = true;
 function changeListBird(count){
   shufleArr = birdsData[count].sort(() => Math.random() - 0.5);
   for(let i = 0; i < shufleArr.length; i++){
-      birdLi[i].innerHTML = `<span class='li_button'></span>${shufleArr[i].name}`
+      birdLi[i].innerHTML = `<span class='li_button'></span>${lang === 'en'? shufleArr[i].name_en : shufleArr[i].name}`
   }
   console.log(shufleArr)
 }
@@ -201,8 +220,13 @@ function clickNext(){
     console.log(countArr)
     changeListBird(countArr);
     blockAboutBird.innerHTML = '';
-    blockAboutBird.innerHTML = `Послушайте плеер.<br>
-    Выберите птицу из списка`;
+    if(lang === 'en'){
+      blockAboutBird.innerHTML = `Listen to the player.<br>
+      Select a bird from the list`;
+    }else{
+      blockAboutBird.innerHTML = `Послушайте плеер.<br>
+      Выберите птицу из списка`;
+    }
     blockQuestion.innerHTML = ''
     createBlockQuestion();
     colorBirdFamilyItem(countArr);
@@ -227,7 +251,7 @@ birdLi.forEach((bird, index) => {
         <img src="${shufleArr[index].image}" alt="">
       </div>
       <div class="photo-audio_audio">
-        <p class="photo-audio_audio_name-bird">${shufleArr[index].name}</p>
+        <p class="photo-audio_audio_name-bird">${lang === 'en' ? shufleArr[index].name_en : shufleArr[index].name}</p>
         <p class="photo-audio_audio_name-birdFamily">${shufleArr[index].species}</p>
         <div class="photo-audio_audio_play">
           <div class="controls_bird">
@@ -259,7 +283,7 @@ birdLi.forEach((bird, index) => {
 
     let div_text = document.createElement('div');
     div_text.classList = 'block_about-item_text';
-    div_text.innerHTML = `${shufleArr[index].description}`;
+    div_text.innerHTML = `${lang === 'en' ? shufleArr[index].description_en : shufleArr[index].description_en}`;
     blockAboutBird.appendChild(div_text);
 
     const buttonPlay_bird = document.querySelector('.play-button_bird');
@@ -285,7 +309,10 @@ birdLi.forEach((bird, index) => {
     volumeSliderHoverBird(audioBird);
     clickTimeBarLine(audioBird, timeBarLineBird);
     setInterval(() => {
-      changeLineBird(audioBird, timeBarLineBird)
+      let currentBird = audioBird.currentTime / audioBird.duration * 100;
+      timeBarLineBird.style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${currentBird}%, rgb(115, 115, 115) ${currentBird}%, grey 100%)`;
+      document.querySelector('.timebar-circle_bird').style.left = `${currentBird}%`;
+      document.querySelector('.timebar-time_bird_currentTime').innerHTML = getTimeFromNum(audioBird.currentTime);
     }, 200)
 
 
@@ -301,7 +328,7 @@ birdLi.forEach((bird, index) => {
       document.querySelector('.score span').innerHTML = score;
       
       document.querySelector('.block_question_photo img').src = shufleArr[index].image;
-      document.querySelector('.block_question_audio_p').innerHTML = shufleArr[index].name;
+      document.querySelector('.block_question_audio_p').innerHTML = lang === 'en' ? shufleArr[index].name_en : shufleArr[index].name;
 
       isRight = false
       buttonNext.style.backgroundColor = 'rgb(19, 175, 123)';
@@ -316,13 +343,18 @@ birdLi.forEach((bird, index) => {
       if(countArr === 5) {
         let div_finish = document.createElement('div');
         div_finish.classList = 'finish';
-        div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
-        <div><span>Посмотреть результат</span></div>
-      </a>`
+        if(lang === 'en'){
+          div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
+            <div><span>View result</span></div>
+            </a>`
+        }else{
+          div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
+            <div><span>Посмотреть результат</span></div>
+            </a>`
+        }
       buttonNext.remove();
       document.querySelector('.main').appendChild(div_finish);
 
-      localStorage.clear();
       localStorage.setItem('score',JSON.stringify(score));
       }
     } else {
@@ -339,13 +371,13 @@ birdLi.forEach((bird, index) => {
 })
 
 function trueSound() {
-  var audio = new Audio();
+  const audio = new Audio();
   audio.src = '../assets/audio/zvuk-otvet-zaschitan-galochka-5193-1-1__=3 (mp3cut.net).mp3';
   audio.autoplay = true;
 }
 
 function falseSound() {
-  var audio = new Audio();
+  const audio = new Audio();
   audio.src = '../assets/audio/standartnyiy-zvuk-s-oshibochnyim-otvetom-5199-1__=8 (mp3cut.net).mp3';
   audio.autoplay = true;
 }
@@ -363,12 +395,12 @@ function durationTimeBird(audio) {
   })
 }
 
-function changeLineBird(audio, elem) {
+/* function changeLineBird(audio, elem) {
   let currentBird = audio.currentTime / audio.duration * 100;
   elem.style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${currentBird}%, rgb(115, 115, 115) ${currentBird}%, grey 100%)`;
   document.querySelector('.timebar-circle_bird').style.left = `${currentBird}%`;
   document.querySelector('.timebar-time_bird_currentTime').innerHTML = getTimeFromNum(audio.currentTime);
-}
+} */
 
 
 function clickVolumeBird(audio) {

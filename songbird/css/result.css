@@ -55,14 +55,18 @@
     color: #fff;
   }
   
-  .score p {
+  .score {
     font-family: 'Dancing Script', cursive;
     font-size: 30px;
     color: #fff;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
   }
   
-  .score span {
+  .score_number {
     color: rgb(19, 175, 123);
   }
 
