@@ -232,7 +232,7 @@ body.lock {
     flex-direction: column;
     position: absolute;
     left: 0;
-    top: -145px;
+    top: -185px;
     transition: top 1s ease;
   }
 

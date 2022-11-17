@@ -1,0 +1,427 @@
+.body {
+    max-width: 1920px;
+    background-color: rgb(39, 20, 20);
+    margin: 0;
+    }
+.container {
+    width: 75%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+.cont1{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+cont2{
+  width: 100%;
+}
+  
+  .header {
+    padding-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  .wrap_logo_a{
+    text-decoration: none;
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo_img {
+    display: block;
+  }
+  
+  .logo_p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 52px;
+    margin: 0;
+    color: #fff;
+  }
+  
+  .logo_p span {
+    color: rgb(19, 175, 123);
+  }
+  
+  .wrap_logo_a:hover .logo_p{
+    color: rgb(19, 175, 123);
+  }
+  
+  .wrap_logo_a:hover .logo_p span {
+    color: #fff;
+  }
+
+
+  .main {
+    width: 100%;
+    border-radius: 15px;
+    border: solid 1px rgb(93, 93, 93);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 15px 0;
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
+.block_image {
+  width: 80%;
+  overflow: hidden;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.button_next,
+.button_prev {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid 3px rgb(19, 175, 123);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.button_next:hover svg,
+.button_prev:hover svg{
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+
+.slider {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.slider img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .3}
+  to {opacity: 1}
+}
+
+.block_description {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  width: 80%;
+}
+
+.block_description p {
+  width: 100%;
+  padding: 10px 5px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.name,
+.name-lat {
+  border-bottom: solid 2px rgb(93, 93, 93);
+}
+
+.audio {
+  width: 100%;
+}
+.audioplayer {
+  height: 88px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.play-button {
+  border: 3px solid rgb(19, 175, 123);
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.form.play {
+  border-radius: 5px;
+  border: 10px solid transparent; 
+  border-left: 15px solid rgb(19, 175, 123);
+  transition: .3s;
+  margin-left: 13.5px;
+}
+.play-button:hover .form {
+  scale:1.1;
+}
+
+.form.pause  {
+  height: 15px;
+  width: 9px;
+  position: relative;
+  transition: .3s;
+}
+.form.pause::before  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause::after  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause:hover {
+  scale:1.1;
+}
+
+.time{
+  height: 16px;
+}
+
+.timebar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.timebar-bar {
+  position: relative;
+}
+
+.timebar-line {
+  height: 7px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.timebar-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%,calc(-50% + 3px));
+  z-index: 5;
+}
+
+.timebar-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  gap: 30px;
+}
+
+.timebar-time {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  justify-content: flex-end;
+}
+
+.timebar-volume {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.volume {
+  cursor: pointer;
+}
+
+.volume svg {
+  width: 30px;
+}
+
+.volume.on.active {
+  display: block;
+}
+.volume.on {
+  display: none;
+}
+
+.volume-slider.active {
+  display: block;
+  width: 100px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 100%, rgb(115, 115, 115) 100%, grey 100%);
+  cursor: pointer;
+  transition: 0.6s all;
+}
+
+.volume-slider {
+  display: none;
+  transition: 0.6s all;
+}
+
+.volume.out {
+  display: none;
+}
+.volume.out.active {
+  display: block;
+}
+
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .footer_p {
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    box-sizing: border-box;
+  }
+  .link_github {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+  }
+  
+  .link_github p {
+    margin: 0;
+  }
+  
+  .link_github:hover p {
+    color: rgb(19, 175, 123);
+  }
+  
+  .link_github:hover path,
+  .link_rs:hover path:not(:last-child){
+    fill: rgb(19, 175, 123);
+  }
+
+  @media(max-width: 900px){
+    .block_image,
+    .block_description {
+      width: 95%;
+    }
+  }
+
+  @media(max-width: 800px){
+    .container {
+      width: 85%;
+    }
+  }
+
+  @media(max-width: 700px){
+    .container {
+      width: 95%;
+    }
+
+    .block_image {
+      gap: 10px;
+    }
+
+    .slider,
+    .slider img {
+      width: 300px;
+      height: 225px;
+    }
+
+    .button_next,
+    .button_prev {
+      width: 30px;
+      height: 30px;
+      border: solid 2px rgb(19, 175, 123);
+    } 
+
+    .button_next svg,
+    .button_prev svg {
+      width: 22.5px;
+    }
+  }
+  @media(max-width: 600px){
+    .logo_p {
+      font-size: 34px;
+    }
+    .logo_img {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  @media(max-width: 450px){
+    .container{
+      width: 97%;
+    }
+
+    .block_image {
+      gap: 10px;
+      width: 98%;
+    }
+
+    .slider,
+    .slider img {
+      width: 220px;
+      height: 165px;
+    }
+
+    .button_next,
+    .button_prev {
+      width: 25px;
+      height: 25px;
+    } 
+
+    .button_next svg,
+    .button_prev svg {
+      width: 18.75px;
+    }
+  }
