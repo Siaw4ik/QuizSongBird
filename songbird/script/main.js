@@ -28,6 +28,7 @@ const birdFamilyItem = document.querySelectorAll('.bird-family_item');
 let countArr = 0;
 let shufleArr;
 let isRight = true;
+let intervalAnswer;
 
 
 function changeListBird(count){
@@ -60,12 +61,12 @@ function createBlockQuestion(){
                 <div class="form play"></div>
               </div>
               <div class="timebar">
+                <div class="time"></div>
                 <div class="timebar-bar">
                   <div class="timebar-line"></div>
                   <div class="timebar-circle"></div>
                 </div>
                 <div class="timebar-other">
-                  <div class="time"></div>
                   <div class="timebar-volume">
                     <div class="volume on active">
                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 122.88 96.65"><title>sound</title><path fill="rgb(19, 175, 123)" d="M11,22.84H36.47L58.17,1A3.44,3.44,0,0,1,63,1a3.39,3.39,0,0,1,1,2.44h0V93.2a3.46,3.46,0,0,1-5.93,2.41L36.65,77.49H11a11,11,0,0,1-11-11V33.83a11,11,0,0,1,11-11Zm65.12,15a3.22,3.22,0,1,1,6.1-2,43.3,43.3,0,0,1,1.56,13.27c-.09,4.76-.78,9.44-2.13,12.21a3.23,3.23,0,1,1-5.8-2.83c.93-1.92,1.43-5.59,1.5-9.48a37.13,37.13,0,0,0-1.23-11.12Zm16.64-12a3.23,3.23,0,0,1,6-2.48c3,7.18,4.61,16.23,4.75,25.22s-1.17,17.72-4,24.77a3.22,3.22,0,1,1-6-2.4C96,64.64,97.15,56.66,97,48.6s-1.58-16.36-4.28-22.81Zm16.09-10.23a3.22,3.22,0,1,1,5.8-2.8,86.65,86.65,0,0,1,8.24,36.44c.09,12.22-2.37,24.39-7.73,34.77a3.22,3.22,0,0,1-5.73-3c4.88-9.43,7.11-20.56,7-31.77a80,80,0,0,0-7.6-33.69ZM37.89,29.74H11A4.11,4.11,0,0,0,6.9,33.83V66.51A4.11,4.11,0,0,0,11,70.6h26.9s2,.69,2.21.83L57.16,85.8v-74L40.52,28.53a3.46,3.46,0,0,1-2.63,1.21Z"/></svg>
@@ -107,8 +108,12 @@ function createBlockQuestion(){
     let current = audioAnswer.currentTime / audioAnswer.duration * 100;
     document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
     document.querySelector('.timebar-circle').style.left = `${current}%`;
+    
+  }, 200);
+  clearInterval(intervalAnswer)
+  intervalAnswer = setInterval(() => {
     document.querySelector('.timebar-time_currentTime').innerHTML = getTimeFromNum(audioAnswer.currentTime);
-  }, 200)
+  }, 1000)
 }
 
 createBlockQuestion();
@@ -141,6 +146,9 @@ function getTimeFromNum(num) {
 }
 
 function durationTime(audio) {
+  audio.addEventListener('abort', () => {
+    document.querySelector('.time').innerHTML = 'Loading...';
+  })
   audio.addEventListener('loadeddata', () => {
     document.querySelector('.time').innerHTML = '';
     let div_time = document.createElement('div');
@@ -212,7 +220,8 @@ colorBirdFamilyItem(countArr);
 
 let countScore = 5;
 let score = 0;
-
+let intervalBirdTime;
+let intervalBirdStyle;
 
 function clickNext(){
   if ( countArr < 5){
@@ -236,6 +245,8 @@ function clickNext(){
 
     buttonNext.style.backgroundColor = 'rgb(52, 51, 51)';
     buttonNext.style.cursor = 'default';
+    clearInterval(intervalBirdStyle);
+    clearInterval(intervalBirdTime);
   }
 }
 
@@ -308,14 +319,16 @@ birdLi.forEach((bird, index) => {
     clickVolumeBird(audioBird);
     volumeSliderHoverBird(audioBird);
     clickTimeBarLine(audioBird, timeBarLineBird);
-    setInterval(() => {
+    clearInterval(intervalBirdStyle);
+    clearInterval(intervalBirdTime);
+    intervalBirdStyle = setInterval(() => {
       let currentBird = audioBird.currentTime / audioBird.duration * 100;
       timeBarLineBird.style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${currentBird}%, rgb(115, 115, 115) ${currentBird}%, grey 100%)`;
       document.querySelector('.timebar-circle_bird').style.left = `${currentBird}%`;
+    }, 200);
+    intervalBirdTime = setInterval(() => {
       document.querySelector('.timebar-time_bird_currentTime').innerHTML = getTimeFromNum(audioBird.currentTime);
-    }, 200)
-
-
+    }, 1000)
 
     const answer = document.querySelector('.answer').id;
     if (answer === shufleArr[index].name) {
@@ -383,6 +396,9 @@ function falseSound() {
 }
 
 function durationTimeBird(audio) {
+  audio.addEventListener('abort', () => {
+    document.querySelector('.time_bird').innerHTML = 'Loading...';
+  })
   audio.addEventListener('loadeddata', () => {
     document.querySelector('.time_bird').innerHTML = '';
     let div_time = document.createElement('div');

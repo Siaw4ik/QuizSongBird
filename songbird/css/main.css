@@ -359,8 +359,23 @@
   flex: 1 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 40px;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.time{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  height: 19px;
+}
+
+.timebar-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100px;
 }
 
 .timebar-bar {
@@ -395,13 +410,6 @@
   gap: 30px;
 }
 
-.timebar-time {
-  display: flex;
-  flex-direction: row;
-  font-size: 18px;
-  height: 30px;
-  width: 100px;
-}
 
 .timebar-volume {
   display: flex;
