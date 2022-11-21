@@ -347,11 +347,14 @@ birdLi.forEach((bird, index) => {
       localStorage.setItem('score',JSON.stringify(score));
       }
     } else {
-      if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
+      /* if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
         countScore -= 1;
+      } */
+      if(bird.querySelector('span').style.backgroundColor !== 'red'){
+        countScore -= 1;
+        falseSound();
       }
       if(isRight){
-        falseSound();
         bird.querySelector('span').style.backgroundColor = 'red';
       }
     }
