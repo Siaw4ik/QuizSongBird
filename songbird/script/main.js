@@ -308,7 +308,9 @@ birdLi.forEach((bird, index) => {
     audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
     const answer = document.querySelector('.answer').id;
     if (answer === shufleArr[index].name) {
-      trueSound();
+      if(bird.querySelector('span').style.backgroundColor !== 'rgb(19, 175, 123)'){
+        trueSound();
+      }
       bird.querySelector('span').style.backgroundColor = 'rgb(19, 175, 123)';
       if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
         score += countScore;
@@ -347,12 +349,11 @@ birdLi.forEach((bird, index) => {
       localStorage.setItem('score',JSON.stringify(score));
       }
     } else {
-      /* if(document.querySelector('.block_question_audio_p').innerHTML === '**********'){
-        countScore -= 1;
-      } */
       if(bird.querySelector('span').style.backgroundColor !== 'red'){
         countScore -= 1;
-        falseSound();
+        if(isRight === true){
+          falseSound();
+        }
       }
       if(isRight){
         bird.querySelector('span').style.backgroundColor = 'red';
