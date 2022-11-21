@@ -18,7 +18,6 @@ const nextButton = document.querySelector('.button_next');
 
 let count = 0;
 const audio = new Audio();
-let intervalID;
 
 function draw(){
   let img = document.createElement('img');
@@ -43,7 +42,6 @@ function drawDescription(){
   audio.src = arrBird[count].audio;
   audio.classList = count;
   document.querySelector('.audio').append(audio);
-  
 }
 
 nextButton.addEventListener('click', () => {
@@ -58,6 +56,9 @@ nextButton.addEventListener('click', () => {
   imgArr[0].remove();
   drawDescription();
   createAudio();
+  audio.removeEventListener('timeupdate', changeCurrentTime)
+  document.querySelector('.play-button').removeEventListener('click', a);
+  document.querySelector('.play-button').addEventListener('click', a);
 })
 
 prevButton.addEventListener('click', () => {
@@ -72,6 +73,9 @@ prevButton.addEventListener('click', () => {
   imgArr[0].remove();
   drawDescription();
   createAudio();
+  audio.removeEventListener('timeupdate', changeCurrentTime);
+  document.querySelector('.play-button').removeEventListener('click', a);
+  document.querySelector('.play-button').addEventListener('click', a);
 })
 
 function createAudio(){
@@ -85,8 +89,7 @@ function createAudio(){
         <div class="timebar">
           <div class="time"></div>
           <div class="timebar-bar">
-            <div class="timebar-line"></div>
-            <div class="timebar-circle"></div>
+            <div class="timebar-line"><div class="timebar-circle"></div></div>
           </div>
           <div class="timebar-other">
             <div class="timebar-volume">
@@ -106,25 +109,17 @@ function createAudio(){
     console.log('muted')
     audio.muted = !audio.muted
   }
-  durationTime();
-  play_pauseAudio();
-  audio.addEventListener('ended', () => {
-    document.querySelector('.form').classList.remove("pause");
-    document.querySelector('.form').classList.add("play");
-  })
   clickTimeBarLine();
   clickVolume();
   volumeSliderHover();
-  clearInterval(intervalID); 
-  setInterval(() => {
-    let current = audio.currentTime / audio.duration * 100;
-    document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
-    document.querySelector('.timebar-circle').style.left = `${current}%`;
-  }, 200);
-  intervalID = setInterval(() => {
-    document.querySelector('.timebar-time_currentTime').innerHTML = getTimeFromNum(audio.currentTime);
-  }, 1000)
+
+  const line = document.querySelector('.timebar-line');
+  let circle = document.querySelector('.timebar-bar').querySelector('.timebar-circle');
+
+  changeLineCircle(audio, line, circle)
 }
+
+audio.addEventListener('timeupdate', changeCurrentTime);
 
 function getTimeFromNum(num) {
   let seconds = parseInt(num);
@@ -138,7 +133,28 @@ function getTimeFromNum(num) {
   }
 }
 
-function durationTime() {
+function a(){
+  console.log('a')
+  if(audio.paused){
+    document.querySelector('.form').classList.remove("play");
+    document.querySelector('.form').classList.add("pause");
+    document.querySelector('.timebar-circle').style.background = 'grey'
+    audio.play();
+  }else {
+    document.querySelector('.form').classList.remove("pause");
+    document.querySelector('.form').classList.add("play");
+    audio.pause();
+  }
+}
+
+  document.querySelector('.play-button').addEventListener('click', a);
+
+
+  audio.addEventListener('abort', () => {
+    document.querySelector('.time').innerHTML = 'Loading...';
+    audio.removeEventListener('timeupdate', changeCurrentTime);
+  })
+
   audio.addEventListener('loadeddata', () => {
     document.querySelector('.time').innerHTML = '';
     let div_time = document.createElement('div');
@@ -148,22 +164,15 @@ function durationTime() {
         <span> / </span>
         <div class="timebar-time_durationTime">${getTimeFromNum(audio.duration)}</div>`
     document.querySelector('.time').prepend(div_time);
+    audio.addEventListener('timeupdate', changeCurrentTime);
   })
-}
 
-function play_pauseAudio() {
-  document.querySelector('.play-button').addEventListener('click', () => {
-    if(audio.paused){
-      document.querySelector('.form').classList.remove("play");
-      document.querySelector('.form').classList.add("pause");
-      audio.play();
-    }else {
-      document.querySelector('.form').classList.remove("pause");
-      document.querySelector('.form').classList.add("play");
-      audio.pause();
-    }
+  audio.addEventListener('ended', () => {
+    document.querySelector('.form').classList.remove("pause");
+    document.querySelector('.form').classList.add("play");
+    document.querySelector('.timebar-circle').style.background = 'rgb(61, 133, 140)'
   })
-}
+
 
 function clickTimeBarLine(){
   const line = document.querySelector('.timebar-line');
@@ -209,4 +218,53 @@ function volumeSliderHover() {
     audio.volume = newVolume;
     volumeSlider.style.background = `linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${newVolume * 100}%, rgb(115, 115, 115) ${newVolume * 100}%, grey 100%)`
   })
+}
+
+function changeCurrentTime(){
+  let current = audio.currentTime / audio.duration * 100;
+  document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
+
+  document.querySelector('.timebar-time_currentTime').innerHTML = getTimeFromNum(audio.currentTime);
+}
+
+function changeLineCircle(audio, line, circle){  
+  audio.addEventListener('timeupdate', changeLeftCircle)
+  
+  function changeLeftCircle() {
+    let current = audio.currentTime / audio.duration * 100;
+    circle.style.left = `${current}%`
+  }
+  
+  
+  circle.onmousedown = function(event){
+    event.preventDefault();
+    let widthLine = line.offsetWidth;
+  
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    audio.removeEventListener('timeupdate', changeLeftCircle)
+  
+    function onMouseMove(event){
+      let newLeftCircle = (event.clientX - line.getBoundingClientRect().left) / widthLine * 100 ;
+  
+      if (newLeftCircle < 0) {
+        newLeftCircle = 0;
+      }else if(newLeftCircle > 100) {
+        newLeftCircle = 100
+      }
+  
+      circle.style.left = newLeftCircle + '%'
+      audio.currentTime = audio.duration * newLeftCircle / 100;
+    }
+  
+    function onMouseUp(){
+      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', onMouseMove);
+      audio.addEventListener('timeupdate', changeLeftCircle)
+    }
+  }
+  
+  circle.ondragstart = function() {
+    return false;
+  };
 }

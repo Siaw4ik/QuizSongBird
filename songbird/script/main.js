@@ -33,13 +33,12 @@ function changeListBird(count){
   for(let i = 0; i < shufleArr.length; i++){
       birdLi[i].innerHTML = `<span class='li_button'></span>${lang === 'en'? shufleArr[i].name_en : shufleArr[i].name}`
   }
-  console.log(shufleArr)
+/*   console.log(shufleArr) */
 }
 
 changeListBird(countArr)
 
 const audio = new Audio();
-let newCurrentTime;
 
 function createBlockQuestion(){
   const randomNumber = Math.floor(Math.random() * (5 -  0 + 1)) + 0;
@@ -88,15 +87,6 @@ function createBlockQuestion(){
   }
   audioPlayer.prepend(audio);
 
-  const buttonPlay = document.querySelector('.play-button');
-  const form = document.querySelector('.form');
-
-  play_pauseAudio(audio, buttonPlay, form);
-  audio.addEventListener('ended', () => {
-    form.classList.remove("pause");
-    form.classList.add("play");
-  })
-  durationTime(audio);
   clickVolume(audio);
   volumeSliderHover(audio);
 
@@ -104,27 +94,31 @@ function createBlockQuestion(){
   let circle = document.querySelector('.timebar-bar').querySelector('.timebar-circle');
   clickTimeBarLine(audio, line);
   changeLineCircle(audio, line, circle);
-
-  /* audio.addEventListener('timeupdate', changeCurrentTime); */
 }
 
 createBlockQuestion();
 
-
 audio.addEventListener('timeupdate', changeCurrentTime);
 
-function play_pauseAudio(audio, elem, form) {
-  elem.addEventListener('click', () => {
+audio.addEventListener('ended', () => {
+  document.querySelector('.form').classList.remove("pause");
+  document.querySelector('.form').classList.add("play");
+  document.querySelector('.timebar-circle').style.background = 'rgb(61, 133, 140)'
+})
+
+document.querySelector('.play-button').addEventListener('click', play_pauseAudio);
+
+function play_pauseAudio() {
     if(audio.paused){
-      form.classList.remove("play");
-      form.classList.add("pause");
+      document.querySelector('.form').classList.remove("play");
+      document.querySelector('.form').classList.add("pause");
       audio.play();
+      document.querySelector('.timebar-circle').style.background = 'grey'
     }else {
-      form.classList.remove("pause");
-      form.classList.add("play");
+      document.querySelector('.form').classList.remove("pause");
+      document.querySelector('.form').classList.add("play");
       audio.pause();
     }
-  })
 }
 
 function getTimeFromNum(num) {
@@ -139,7 +133,6 @@ function getTimeFromNum(num) {
   }
 }
 
-function durationTime(audio) {
   audio.addEventListener('abort', () => {
     document.querySelector('.time').innerHTML = 'Loading...';
     audio.removeEventListener('timeupdate', changeCurrentTime)
@@ -155,7 +148,6 @@ function durationTime(audio) {
     document.querySelector('.time').prepend(div_time);
     audio.addEventListener('timeupdate', changeCurrentTime);
   })
-}
 
 function clickVolume(audio) {
   const onVolume = document.querySelector('.volume.on');
@@ -199,10 +191,7 @@ function clickTimeBarLine(audio, elem){
   elem.addEventListener('click', e => {
     if(e.target.classList[0] === 'timebar-line'){
     const lineWidth = window.getComputedStyle(elem).width;
-    console.log(e.offsetX);
-    newCurrentTime = e.offsetX / parseInt(lineWidth) * audio.duration;
-    audio.currentTime = newCurrentTime;
-    console.log(newCurrentTime)
+    audio.currentTime = e.offsetX / parseInt(lineWidth) * audio.duration;
     }
   })
 }
@@ -224,7 +213,7 @@ let score = 0;
 function clickNext(){
   if ( countArr < 5){
     countArr++;
-    console.log(countArr)
+    /* console.log(countArr) */
     changeListBird(countArr);
     blockAboutBird.innerHTML = '';
     if(lang === 'en'){
@@ -235,16 +224,19 @@ function clickNext(){
       Выберите птицу из списка`;
     }
     blockQuestion.innerHTML = '';
-    audio.removeEventListener('timeupdate', changeCurrentTime)
+    audio.removeEventListener('timeupdate', changeCurrentTime);
     createBlockQuestion();
     colorBirdFamilyItem(countArr);
-    /* audio.addEventListener('timeupdate', changeCurrentTime); */
+    document.querySelector('.play-button').removeEventListener('click', play_pauseAudio);
+    document.querySelector('.play-button').addEventListener('click', play_pauseAudio);
+    
     countScore = 5;
     isRight = true;
     buttonNext.removeEventListener('click', clickNext);
 
     buttonNext.style.backgroundColor = 'rgb(52, 51, 51)';
     buttonNext.style.cursor = 'default';
+    audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
   }
 }
 
@@ -291,13 +283,11 @@ birdLi.forEach((bird, index) => {
 
     let div_text = document.createElement('div');
     div_text.classList = 'block_about-item_text';
-    div_text.innerHTML = `${lang === 'en' ? shufleArr[index].description_en : shufleArr[index].description_en}`;
+    div_text.innerHTML = `${lang === 'en' ? shufleArr[index].description_en : shufleArr[index].description}`;
     blockAboutBird.appendChild(div_text);
 
-    const buttonPlay_bird = document.querySelector('.play-button_bird');
-    const formBird = document.querySelector('.form_bird');
     const timeBarLineBird = document.querySelector('.timebar-line_bird');
-    console.log(audioBird.volume)
+
     audioBird.src = shufleArr[index].audio;
     audioBird.classList = 'audio-bird';
     if(audioBird.muted){
@@ -306,13 +296,9 @@ birdLi.forEach((bird, index) => {
     }
     document.querySelector('.volume-slider_bird').style.background = `linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audioBird.volume * 100}%, rgb(115, 115, 115) ${audioBird.volume * 100}%, grey 100%)`
     document.querySelector('.photo-audio_audio_play').prepend(audioBird);
-
-    play_pauseAudio(audioBird, buttonPlay_bird, formBird);
-    audioBird.addEventListener('ended', () => {
-      formBird.classList.remove("pause");
-      formBird.classList.add("play");
-    })
-    durationTimeBird(audioBird);
+    document.querySelector('.play-button_bird').removeEventListener('click', play_pauseAudioBird);
+    document.querySelector('.play-button_bird').addEventListener('click', play_pauseAudioBird)
+    
     clickVolumeBird(audioBird);
     volumeSliderHoverBird(audioBird);
     clickTimeBarLineBird(audioBird, timeBarLineBird);
@@ -369,42 +355,46 @@ birdLi.forEach((bird, index) => {
         bird.querySelector('span').style.backgroundColor = 'red';
       }
     }
-
   })
 })
 
 audioBird.addEventListener('timeupdate', changeCurrentTimeBird);
 
-function trueSound() {
-  const audio = new Audio();
-  audio.src = '../assets/audio/zvuk-otvet-zaschitan-galochka-5193-1-1__=3 (mp3cut.net).mp3';
-  audio.autoplay = true;
-}
+audioBird.addEventListener('ended', () => {
+  document.querySelector('.form_bird').classList.remove("pause");
+  document.querySelector('.form_bird').classList.add("play");
+  document.querySelector('.timebar-circle_bird').style.background = 'rgb(61, 133, 140)'
+})
 
-function falseSound() {
-  const audio = new Audio();
-  audio.src = '../assets/audio/standartnyiy-zvuk-s-oshibochnyim-otvetom-5199-1__=8 (mp3cut.net).mp3';
-  audio.autoplay = true;
-}
+audioBird.addEventListener('abort', () => {
+  document.querySelector('.time_bird').innerHTML = 'Loading...';
+  audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
+})
 
-function durationTimeBird(audio) {
-  audio.addEventListener('abort', () => {
-    document.querySelector('.time_bird').innerHTML = 'Loading...';
-    audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
-  })
-  audio.addEventListener('loadeddata', () => {
-    document.querySelector('.time_bird').innerHTML = '';
-    let div_time = document.createElement('div');
-    div_time.classList = 'timebar-time_bird';
-    div_time.innerHTML = `
-        <div class="timebar-time_bird_currentTime">00:00</div>
-        <span> / </span>
-        <div class="timebar-time_bird_durationTime">${getTimeFromNum(audio.duration)}</div>`
-    document.querySelector('.time_bird').prepend(div_time);
-    audioBird.addEventListener('timeupdate', changeCurrentTimeBird);
-  })
-}
+audioBird.addEventListener('loadeddata', () => {
+  document.querySelector('.time_bird').innerHTML = '';
+  let div_time = document.createElement('div');
+  div_time.classList = 'timebar-time_bird';
+  div_time.innerHTML = `
+    <div class="timebar-time_bird_currentTime">00:00</div>
+      <span> / </span>
+      <div class="timebar-time_bird_durationTime">${getTimeFromNum(audioBird.duration)}</div>`
+  document.querySelector('.time_bird').prepend(div_time);
+  audioBird.addEventListener('timeupdate', changeCurrentTimeBird);
+})
 
+  function play_pauseAudioBird (){
+    if(audioBird.paused){
+      document.querySelector('.form_bird').classList.remove("play");
+      document.querySelector('.form_bird').classList.add("pause");
+      audioBird.play();
+      document.querySelector('.timebar-circle_bird').style.background = 'grey'
+    }else {
+      document.querySelector('.form_bird').classList.remove("pause");
+      document.querySelector('.form_bird').classList.add("play");
+      audioBird.pause();
+    }
+}
 
 function clickVolumeBird(audio) {
   const onVolumeBird = document.querySelector('.volume_bird.on');
@@ -448,10 +438,7 @@ function clickTimeBarLineBird(audio, elem){
   elem.addEventListener('click', e => {
     if(e.target.classList[0] === 'timebar-line_bird'){
     const lineWidth = window.getComputedStyle(elem).width;
-    console.log(e.offsetX);
-    newCurrentTime = e.offsetX / parseInt(lineWidth) * audio.duration;
-    audio.currentTime = newCurrentTime;
-    console.log(newCurrentTime)
+    audio.currentTime = e.offsetX / parseInt(lineWidth) * audio.duration;
     }
   })
 }
@@ -481,7 +468,6 @@ function changeLineCircle(audio, line, circle){
   circle.onmousedown = function(event){
     event.preventDefault();
     let widthLine = line.offsetWidth;
-    console.log(newCurrentTime)
   
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
@@ -510,6 +496,18 @@ function changeLineCircle(audio, line, circle){
   circle.ondragstart = function() {
     return false;
   };
+}
+
+function trueSound() {
+  const audio = new Audio();
+  audio.src = '../assets/audio/zvuk-otvet-zaschitan-galochka-5193-1-1__=3 (mp3cut.net).mp3';
+  audio.autoplay = true;
+}
+
+function falseSound() {
+  const audio = new Audio();
+  audio.src = '../assets/audio/standartnyiy-zvuk-s-oshibochnyim-otvetom-5199-1__=8 (mp3cut.net).mp3';
+  audio.autoplay = true;
 }
 
 

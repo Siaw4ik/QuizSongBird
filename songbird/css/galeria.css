@@ -230,7 +230,7 @@ cont2{
 }
 
 .timebar-bar {
-  position: relative;
+  padding-right: 10px;
 }
 
 .timebar-line {
@@ -238,6 +238,7 @@ cont2{
   background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
 }
 
 .timebar-circle {
@@ -251,6 +252,7 @@ cont2{
   top: 0;
   transform: translate(-50%,calc(-50% + 3px));
   z-index: 5;
+  cursor: pointer;
 }
 
 .timebar-other {
