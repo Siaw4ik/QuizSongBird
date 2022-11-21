@@ -378,15 +378,16 @@
   width: 100px;
 }
 
-.timebar-bar {
+/* .timebar-bar {
   position: relative;
-}
+} */
 
 .timebar-line {
   height: 7px;
   background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
 }
 
 .timebar-circle {
@@ -534,15 +535,16 @@
   gap: 10px;
 }
 
-.timebar-bar_bird {
+/* .timebar-bar_bird {
   position: relative;
-}
+} */
 
 .timebar-line_bird {
   height: 7px;
   background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
 }
 
 .timebar-circle_bird {
