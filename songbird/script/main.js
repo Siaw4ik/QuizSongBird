@@ -332,21 +332,21 @@ birdLi.forEach((bird, index) => {
       document.querySelector('.form').classList.add("play");
 
       if(countArr === 5) {
-        let div_finish = document.createElement('div');
-        div_finish.classList = 'finish';
-        if(lang === 'en'){
-          div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
-            <div><span>View result</span></div>
-            </a>`
-        }else{
-          div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
-            <div><span>Посмотреть результат</span></div>
-            </a>`
-        }
-      buttonNext.remove();
-      document.querySelector('.main').appendChild(div_finish);
+        if(!document.querySelector('.finish')){
+          let div_finish = document.createElement('div');
+          div_finish.classList = 'finish';
+          if(lang === 'en'){
+            div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
+              <div><span>View result</span></div></a>`
+          }else{
+            div_finish.innerHTML = `<a class="finish_button_a" href="../html/result.html">
+              <div><span>Посмотреть результат</span></div></a>`
+          }
+          buttonNext.remove();
+          document.querySelector('.main').appendChild(div_finish);
 
-      localStorage.setItem('score',JSON.stringify(score));
+          localStorage.setItem('score',JSON.stringify(score));
+        }
       }
     } else {
       if(bird.querySelector('span').style.backgroundColor !== 'red'){
