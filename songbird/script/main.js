@@ -104,16 +104,14 @@ function createBlockQuestion(){
   let circle = document.querySelector('.timebar-bar').querySelector('.timebar-circle');
   clickTimeBarLine(audio, line);
   changeLineCircle(audio, line, circle);
-  audio.addEventListener('timeupdate', () => {
-    let current = audio.currentTime / audio.duration * 100;
-    document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
-  })
+
+  /* audio.addEventListener('timeupdate', changeCurrentTime); */
 }
 
 createBlockQuestion();
 
-audio.addEventListener('timeupdate', changeCurrentTime);
 
+audio.addEventListener('timeupdate', changeCurrentTime);
 
 function play_pauseAudio(audio, elem, form) {
   elem.addEventListener('click', () => {
@@ -144,6 +142,7 @@ function getTimeFromNum(num) {
 function durationTime(audio) {
   audio.addEventListener('abort', () => {
     document.querySelector('.time').innerHTML = 'Loading...';
+    audio.removeEventListener('timeupdate', changeCurrentTime)
   })
   audio.addEventListener('loadeddata', () => {
     document.querySelector('.time').innerHTML = '';
@@ -154,6 +153,7 @@ function durationTime(audio) {
         <span> / </span>
         <div class="timebar-time_durationTime">${getTimeFromNum(audio.duration)}</div>`
     document.querySelector('.time').prepend(div_time);
+    audio.addEventListener('timeupdate', changeCurrentTime);
   })
 }
 
@@ -220,8 +220,6 @@ colorBirdFamilyItem(countArr);
 
 let countScore = 5;
 let score = 0;
-let intervalBirdTime;
-let intervalBirdStyle;
 
 function clickNext(){
   if ( countArr < 5){
@@ -240,14 +238,13 @@ function clickNext(){
     audio.removeEventListener('timeupdate', changeCurrentTime)
     createBlockQuestion();
     colorBirdFamilyItem(countArr);
+    /* audio.addEventListener('timeupdate', changeCurrentTime); */
     countScore = 5;
     isRight = true;
     buttonNext.removeEventListener('click', clickNext);
 
     buttonNext.style.backgroundColor = 'rgb(52, 51, 51)';
     buttonNext.style.cursor = 'default';
-    clearInterval(intervalBirdStyle);
-    clearInterval(intervalBirdTime);
   }
 }
 
@@ -322,11 +319,7 @@ birdLi.forEach((bird, index) => {
     let circleBird = document.querySelector('.timebar-bar_bird').querySelector('.timebar-circle_bird');
 
     changeLineCircle(audioBird, timeBarLineBird, circleBird);
-    audioBird.addEventListener('timeupdate', () => {
-      let current = audioBird.currentTime / audioBird.duration * 100;
-      document.querySelector('.timebar-line_bird').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
-    })
-
+    audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
     const answer = document.querySelector('.answer').id;
     if (answer === shufleArr[index].name) {
       trueSound();
@@ -397,6 +390,7 @@ function falseSound() {
 function durationTimeBird(audio) {
   audio.addEventListener('abort', () => {
     document.querySelector('.time_bird').innerHTML = 'Loading...';
+    audioBird.removeEventListener('timeupdate', changeCurrentTimeBird);
   })
   audio.addEventListener('loadeddata', () => {
     document.querySelector('.time_bird').innerHTML = '';
@@ -407,6 +401,7 @@ function durationTimeBird(audio) {
         <span> / </span>
         <div class="timebar-time_bird_durationTime">${getTimeFromNum(audio.duration)}</div>`
     document.querySelector('.time_bird').prepend(div_time);
+    audioBird.addEventListener('timeupdate', changeCurrentTimeBird);
   })
 }
 
@@ -462,10 +457,15 @@ function clickTimeBarLineBird(audio, elem){
 }
 
 function changeCurrentTime(){
+  let current = audio.currentTime / audio.duration * 100;
+  document.querySelector('.timebar-line').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
   document.querySelector('.timebar-time_currentTime').innerHTML = getTimeFromNum(audio.currentTime);
 }
 
 function changeCurrentTimeBird(){
+  let current = audioBird.currentTime / audioBird.duration * 100;
+  document.querySelector('.timebar-line_bird').style.background = `linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) ${current}%, rgb(115, 115, 115) ${current}%, grey 100%)`;
+
   document.querySelector('.timebar-time_bird_currentTime').innerHTML = getTimeFromNum(audioBird.currentTime);
 }
 
