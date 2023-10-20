@@ -1,0 +1,697 @@
+.body {
+  max-width: 1920px;
+  background-color: rgb(39, 20, 20);
+  margin: 0;
+  }
+
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding-top: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.wrap_logo_a{
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo_img {
+  display: block;
+}
+
+.logo_p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 52px;
+  margin: 0;
+  color: #fff;
+}
+
+.logo_p span {
+  color: rgb(19, 175, 123);
+}
+
+.wrap_logo_a:hover .logo_p{
+  color: rgb(19, 175, 123);
+}
+
+.wrap_logo_a:hover .logo_p span {
+  color: #fff;
+}
+
+.score p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+  color: #fff;
+  margin: 0;
+}
+
+.score span {
+  color: rgb(19, 175, 123);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 30px 0 30px;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.bird-family {
+  width: 100%;
+  border-radius: 5px;
+  border: outset 0px;
+  background-color: rgb(19, 175, 123);
+}
+
+.bird-family ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bird-family_item {
+  list-style-type: none;
+  color: #fff;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: center;
+  flex: auto;
+}
+
+.block_question {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.block_question_photo img {
+  width: 200px;
+  height: 155px;
+  display: block;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.block_question_audio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  color: #fff;
+  width: 100%;
+}
+
+.block_question_audio_p {
+  border-bottom: 0.5px solid rgb(93, 93, 93);
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 23px;
+  width: 100%;
+}
+
+.block_question_audio.audio {
+  margin-top: 10px;
+}
+
+
+.two {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+}
+
+.two_block-radio {
+  width: 50%;
+}
+
+.block_radio_ul {
+  padding: 0;
+  margin: 0;
+}
+
+.block_radio_ul li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  box-sizing: border-box;
+  height: 47.6px;
+  padding: 13px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: rgb(52, 51, 51);
+  border-left: solid 1px rgb(93, 93, 93);
+  border-right: solid 1px rgb(93, 93, 93);
+}
+
+.block_radio_ul li {
+  border-bottom: solid 1px rgb(93, 93, 93);
+}
+.block_radio_ul li:first-child{
+  border-top: solid 1px rgb(93, 93, 93);
+  border-radius: 5px 5px 0 0;
+}
+
+.block_radio_ul li:last-child{
+  border-radius: 0 0 5px 5px;
+}
+
+.block_radio_ul li:hover {
+  background-color: rgb(110, 110, 110);
+  cursor: pointer;
+}
+
+.li_button {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  transition: 0.3s all linear;
+  background-color: rgb(93, 93, 93);
+}
+
+.block_radio_ul input:checked{
+  background-color: rgb(19, 175, 123);
+}
+
+.two_block_about-item {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 50%;
+  padding: 15px;
+  color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.block_about-item_photo-audio {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.photo-audio_image img {
+  width: 200px;
+  height: 155px;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.photo-audio_audio_name-bird {
+  font-size: 23px;
+}
+
+.photo-audio_audio_name-bird,
+.photo-audio_audio_name-birdFamily {
+  border-bottom: 0.5px solid rgb(93, 93, 93);
+  margin: 0;
+  padding: 10px 0;
+}
+
+.block_next {
+  background-color: rgb(52, 51, 51);
+  border: solid 1px rgb(93, 93, 93);
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.block_next p {
+  color: #fff;
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+}
+
+.finish {
+  width: 100%;
+}
+
+.finish_button_a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+}
+.finish_button_a div{
+  padding: 10px 0px;
+  background-color: rgb(19, 175, 123);
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ------------------audioplayer---------------- */
+.block_question_audio_audioplayer {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.play-button {
+  border: 3px solid rgb(19, 175, 123);
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.form.play {
+  border-radius: 5px;
+  border: 10px solid transparent; 
+  border-left: 15px solid rgb(19, 175, 123);
+  transition: .3s;
+  margin-left: 13.5px;
+}
+.play-button:hover .form {
+  scale:1.1;
+}
+
+.form.pause  {
+  height: 15px;
+  width: 9px;
+  position: relative;
+  transition: .3s;
+}
+.form.pause::before  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause::after  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form.pause:hover {
+  scale:1.1;
+}
+
+.timebar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.time{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  height: 19px;
+}
+
+.timebar-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100px;
+}
+
+/* .timebar-bar {
+  position: relative;
+} */
+
+.timebar-line {
+  height: 7px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.timebar-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%,calc(-50% + 3px));
+  z-index: 5;
+}
+
+.timebar-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  gap: 30px;
+}
+
+
+.timebar-volume {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.volume {
+  cursor: pointer;
+}
+
+.volume svg {
+  width: 30px;
+}
+
+.volume.on.active {
+  display: block;
+}
+.volume.on {
+  display: none;
+}
+
+.volume-slider.active {
+  display: block;
+  width: 100px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 100%, rgb(115, 115, 115) 100%, grey 100%);
+  cursor: pointer;
+  transition: 0.6s all;
+}
+
+.volume-slider {
+  display: none;
+  transition: 0.6s all;
+}
+
+.volume.out {
+  display: none;
+}
+.volume.out.active {
+  display: block;
+}
+
+/*                ////////////from bird/////////////              */
+
+.photo-audio_audio {
+  width: 100%;
+}
+.controls_bird {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+  height: 75.5px;
+}
+
+.play-button_bird {
+  border: 3px solid rgb(19, 175, 123);
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.form_bird.play {
+  border-radius: 5px;
+  border: 10px solid transparent; 
+  border-left: 15px solid rgb(19, 175, 123);
+  transition: .3s;
+  margin-left: 13.5px;
+}
+.play-button_bird:hover .form_bird {
+  scale:1.1;
+}
+
+.form_bird.pause  {
+  height: 15px;
+  width: 9px;
+  position: relative;
+  transition: .3s;
+}
+.form_bird.pause::before  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form_bird.pause::after  {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(19, 175, 123);
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.form_bird.pause:hover {
+  scale:1.1;
+}
+
+.time_bird {
+  align-self: flex-end;
+  height: 21px;
+}
+
+.timebar_bird {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* .timebar-bar_bird {
+  position: relative;
+} */
+
+.timebar-line_bird {
+  height: 7px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 0%, rgb(115, 115, 115) 0%, grey 100%);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.timebar-circle_bird {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%,calc(-50% + 3px));
+  z-index: 5;
+}
+
+.timebar-time_bird {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+}
+
+.timebar-volume_bird {
+  height: 28px;
+  width: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.volume_bird {
+  cursor: pointer;
+}
+
+.volume_bird svg {
+  width: 30px;
+}
+
+.volume_bird.on.active {
+  display: block;
+}
+.volume_bird.on {
+  display: none;
+}
+
+.volume-slider_bird.active {
+  display: block;
+  width: 100px;
+  height: 12px;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(19, 175, 123) 0%, rgb(61, 133, 140) 100%, rgb(115, 115, 115) 100%, grey 100%);
+  cursor: pointer;
+  transition: 0.6s all;
+}
+
+.volume-slider_bird {
+  display: none;
+  transition: 0.6s all;
+}
+
+.volume_bird.out {
+  display: none;
+}
+.volume_bird.out.active {
+  display: block;
+}
+
+/* ------------------audioplayer---------------- */
+
+@media (max-width: 1300px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .block_about-item_photo-audio {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px) {
+  .photo-audio_audio_name-bird {
+    font-size: 21px;
+  }
+  
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 90%;
+  }
+
+  .logo_p {
+    font-size: 40px;
+  }
+
+  .logo_img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 10px 0 10px;
+  }
+
+  .logo_p {
+    font-size: 34px;
+  }
+  .logo_img {
+    width: 34px;
+    height: 34px;
+  }
+  .score p {
+    font-size: 24px;
+  }
+
+  .two {
+    flex-direction: column;
+  }
+
+  .two_block-radio,
+  .two_block_about-item {
+    width: 100%;
+
+  }
+  .block_about-item_photo-audio {
+    flex-direction: row;
+  }
+  .block_question {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .block_question_audio {
+    height: 150px;
+  }
+}
+
+@media (max-width: 585px) {
+  .block_about-item_photo-audio {
+    flex-direction: column;
+  }
+  .timebar-time_bird {
+    font-size: 14px;
+  }
+}

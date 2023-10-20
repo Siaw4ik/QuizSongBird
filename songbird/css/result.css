@@ -1,0 +1,219 @@
+.body {
+    max-width: 1920px;
+    background-color: rgb(39, 20, 20);
+    margin: 0;
+    }
+.container {
+    width: 75%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+      }
+  
+  .header {
+    padding-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  .wrap_logo_a{
+    text-decoration: none;
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo_img {
+    display: block;
+  }
+  
+  .logo_p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 52px;
+    margin: 0;
+    color: #fff;
+  }
+  
+  .logo_p span {
+    color: rgb(19, 175, 123);
+  }
+  
+  .wrap_logo_a:hover .logo_p{
+    color: rgb(19, 175, 123);
+  }
+  
+  .wrap_logo_a:hover .logo_p span {
+    color: #fff;
+  }
+  
+  .score {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .score_number {
+    color: rgb(19, 175, 123);
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 30px 0 30px;
+    color: #fff;
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+  
+  .one {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .bird-family {
+    width: 100%;
+    border-radius: 5px;
+    border: outset 0px;
+    background-color: rgb(19, 175, 123);
+  }
+  
+  .bird-family ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .bird-family_item {
+    list-style-type: none;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: center;
+    flex: auto;
+  }
+
+  .two {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 35px 15px;
+    background-color: rgb(52, 51, 51);
+    border: solid 1px rgb(93, 93, 93);
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .congratulation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: solid 1px rgb(93, 93, 93);
+  }
+
+  .first {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .second {
+    text-align: center;
+  }
+
+  .again {
+    padding-top: 10px;
+  }
+
+  .again_button_a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+  }
+
+  .again_button_a div {
+    background-color: rgb(19, 175, 123);
+    padding: 10px 25px 10px 25px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .footer_p {
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    box-sizing: border-box;
+  }
+  .link_github {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+  }
+  
+  .link_github p {
+    margin: 0;
+  }
+  
+  .link_github:hover p {
+    color: rgb(19, 175, 123);
+  }
+  
+  .link_github:hover path,
+  .link_rs:hover path:not(:last-child){
+    fill: rgb(19, 175, 123);
+  }
+  
+  @media (max-width: 650px) {
+    .container {
+      width: 95%;
+    }
+    .logo_p {
+      font-size: 34px;
+    }
+    .logo_img {
+      width: 34px;
+      height: 34px;
+    }
+    .score p {
+      font-size: 24px;
+    }
+
+    .again_button_a {
+      font-size: 18px;
+    }
+  }
