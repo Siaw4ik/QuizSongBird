@@ -65,4 +65,3 @@ ruButton.addEventListener('click', () => {
   document.querySelector('.six a').textContent = 'Галерея птиц';
   document.querySelector('.seven').textContent = 'Начать Викторину';
 })
-
